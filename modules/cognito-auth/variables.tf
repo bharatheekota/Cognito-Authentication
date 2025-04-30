@@ -1,17 +1,25 @@
+variable "aws_region" {
+  description = "AWS region to deploy resources"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "user_pool_name" {
   description = "Name of the Cognito User Pool"
   type        = string
+  default     = "example-user-pool"
 }
 
 variable "user_pool_client_name" {
-  description = "Name of the Cognito User Pool client"
+  description = "Name of the Cognito User Pool Client"
   type        = string
+  default     = "example-client"
 }
 
 variable "callback_urls" {
-  description = "List of allowed callback URLs for the client"
+  description = "List of allowed callback URLs"
   type        = list(string)
-  default     = ["http://localhost:3000"]
+  default     = ["http://localhost:3000/callback"]
 }
 
 variable "logout_urls" {
@@ -21,13 +29,13 @@ variable "logout_urls" {
 }
 
 variable "create_user_pool_domain" {
-  description = "Whether to create a Cognito user pool domain"
+  description = "Whether to create a user pool domain"
   type        = bool
   default     = true
 }
 
 variable "user_pool_domain" {
-  description = "The domain prefix to use for the Cognito domain (must be globally unique)"
+  description = "Custom domain prefix for the Cognito User Pool"
   type        = string
-  default     = ""
+  default     = "my-app-auth"
 }
