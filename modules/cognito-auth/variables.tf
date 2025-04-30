@@ -1,30 +1,25 @@
 variable "aws_region" {
   description = "AWS region to deploy resources"
-  type        = string
   default     = "us-east-1"
 }
 
 variable "user_pool_name" {
   description = "Name of the Cognito User Pool"
-  type        = string
   default     = "example-user-pool"
 }
 
 variable "user_pool_client_name" {
   description = "Name of the Cognito User Pool Client"
-  type        = string
   default     = "example-client"
 }
 
 variable "callback_urls" {
   description = "List of allowed callback URLs"
-  type        = list(string)
   default     = ["http://localhost:3000/callback"]
 }
 
 variable "logout_urls" {
   description = "List of allowed logout URLs"
-  type        = list(string)
   default     = ["http://localhost:3000/logout"]
 }
 
