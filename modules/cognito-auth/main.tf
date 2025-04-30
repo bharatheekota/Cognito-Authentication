@@ -1,4 +1,8 @@
-resource "aws_cognito_user_pool" "client"  {
+provider "aws" {
+  region = var.aws_region
+}
+
+resource "aws_cognito_user_pool" "client" {
   name = var.user_pool_name
 
   auto_verified_attributes = ["email"]
