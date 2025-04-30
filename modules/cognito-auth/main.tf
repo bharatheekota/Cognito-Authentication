@@ -1,4 +1,4 @@
-resource "aws_cognito_user_pool" "this" {
+resource "aws_cognito_user_pool" "client"  {
   name = var.user_pool_name
 
   auto_verified_attributes = ["email"]
@@ -19,9 +19,9 @@ resource "aws_cognito_user_pool" "this" {
   mfa_configuration = "OFF"
 }
 
-resource "aws_cognito_user_pool_client" "this" {
+resource "aws_cognito_user_pool_client" "client" {
   name         = var.user_pool_client_name
-  user_pool_id = aws_cognito_user_pool.this.id
+  user_pool_id = aws_cognito_user_pool.client.id
 
   explicit_auth_flows = [
     "ALLOW_USER_PASSWORD_AUTH",
@@ -40,8 +40,8 @@ resource "aws_cognito_user_pool_client" "this" {
   supported_identity_providers        = ["COGNITO"]
 }
 
-resource "aws_cognito_user_pool_domain" "this" {
+resource "aws_cognito_user_pool_domain" "tclient" {
   count        = var.create_user_pool_domain ? 1 : 0
   domain       = var.user_pool_domain
-  user_pool_id = aws_cognito_user_pool.this.id
+  user_pool_id = aws_cognito_user_pool.client.id
 }
